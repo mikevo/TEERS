@@ -1,0 +1,64 @@
+.content {
+	margin-top: 70px;
+}
+.undecorated-link:hover {
+	text-decoration: none;
+}
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+	display: none !important;
+}
+.ng-invalid.ng-dirty {
+	border-color: #FA787E;
+}
+.ng-valid.ng-dirty {
+	border-color: #78FA89;
+}
+audio {
+	width: 100%;
+}
+.loading-animation {
+	text-align: center;
+	margin-top: 10%;
+	font-size: 200%;
+}
+.loader {
+	height: 64px;
+}
+.logo {
+	margin: 0 6px 0;
+	height: 20px;
+}
+.logo-large {
+	padding: 1em;
+}
+.logo-large-text {
+	font-size: 300%;
+}
+@keyframes spin {
+	from {
+		transform: scale(1) rotate(0deg);
+	}
+	to {
+		transform: scale(1) rotate(360deg);
+	}
+}
+@-webkit-keyframes spinw {
+	from {
+		-webkit-transform: rotate(0deg);
+		transform: scale(1) rotate(0deg);
+	}
+	to {
+		-webkit-transform: rotate(360deg);
+		transform: scale(1) rotate(360deg);
+	}
+}
+@-moz-keyframes spinm {
+	from {
+		-moz-transform: rotate(0deg);
+		transform: scale(1) rotate(0deg);
+	}
+	to {
+		-moz-transform: rotate(360deg);
+		transform: scale(1) rotate(360deg);
+	}
+}

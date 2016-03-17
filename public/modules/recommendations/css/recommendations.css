@@ -1,0 +1,45 @@
+.ratingcontainer {
+  font-size: 300%;
+}
+.ratingcontainer-centered {
+  text-align: center;
+}
+.rating {
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+}
+ul.rating {
+  display: inline-block;
+}
+.rating li {
+  list-style-type: none;
+  display: inline-block;
+  padding: 1px;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+}
+.rating .filled {
+  color: #ffaa00;
+}
+.thumbnail {
+  padding-top: 1.5em;
+}
+.thumbup-selected, .thumbup:hover {
+  color: #5cb85c;
+  cursor: pointer;
+}
+.thumbdown-selected, .thumbdown:hover {
+  color: #d9534f;
+  cursor: pointer;
+}
+.thumbnail-img {
+  text-align: center;
+  height: 200px;
+}
+@media (min-width: 768px) {
+  .caption-rec {
+    height: 300px;
+  }
+}

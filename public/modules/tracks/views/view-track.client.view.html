@@ -1,0 +1,52 @@
+<div data-ng-controller="SettingsController"></div>
+<section data-ng-controller="TracksController" data-ng-init="findOne()">
+	<div class="page-header">
+		<h1>{{ 'TRACK_DETAILS' | translate }}</h1>
+	</div>
+	<div class="loading-animation" data-ng-hide="loadingComplete">
+		<img class="loader" alt="{{ 'LOADING' | translate }}" src="/modules/core/img/loaders/loader.gif">
+	</div>
+	<div class="row" data-ng-show="loadingComplete">
+		<div class="col-sm-6 col-md-4 thumbnail-img detail-box">
+			<img src="{{ track.album.images[1].url }}" alt="Cover Image">
+		</div>
+		<div class="col-sm-6 col-md-8 large">
+			<div class="row">
+				<div class="col-md-6">
+					<h3>{{ 'ARTISTS' | translate }}</h3>
+					<ul class="artist-list">
+						<li data-ng-repeat="artist in track.artists">
+							<a href="{{ artist.external_urls.spotify }}" data-ng-click="logLink($event.target.href)">{{artist.name}}</a>
+						</li>
+					</ul>
+				</div>
+				<div class="col-md-6">
+					<h3>{{ 'ALBUM' | translate }}</h3>
+					<a href="{{ track.album.external_urls.spotify }}" data-ng-click="logLink($event.target.href)">{{ track.album.name }}</a>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h3>{{ 'SONG' | translate }}</h3>
+					<a href="{{ track.external_urls.spotify }}" data-ng-click="logLink($event.target.href)">{{ track.name }}</a>
+				</div>
+				<div class="col-md-6">
+					<h3>{{ 'PREVIEW' | translate }}</h3>
+					<audio-preview place="place" index="0" size="1" track="track"></audio-preview>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6">
+					<h3>{{ 'RATE_SONG' | translate }}</h3>
+					<div class="ratingcontainer">
+						<div data-ng-show="{{starRating}}" star-rating rating-value="track.rating" max="starMaxRating" on-rating-selected="addStarRatingDetail(rating)"></div>
+						<div data-ng-show="{{!starRating}}">
+							<span class="glyphicon glyphicon-thumbs-up thumbup" data-ng-class="greenselected" aria-hidden="true" data-ng-click="likeDetail()"></span>&nbsp;
+							<span class="glyphicon glyphicon-thumbs-down thumbdown" data-ng-class="redselected" aria-hidden="true" data-ng-click="dislikeDetail()"></span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,81 @@
+<div data-ng-controller="SettingsController"></div>
+<section data-ng-controller="TracksController" data-ng-init="find()">
+	<h2>{{ 'SELECT_SONGS_U_LIKE' | translate }}</h2>
+	<div class="row">
+		<div class="col-md-12">
+			<div data-ng-show="enoughTracks">
+				<div class="alert alert-warning alert-dismissible" data-ng-show="trafficLightColor === 'yellow'" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close" data-ng-click="trafficLightColor = ''"><span aria-hidden="true">&times;</span></button>
+					<strong>{{ 'WARNING' | translate }}</strong> {{ 'PROFILE_ADD_FURTHER_SONGS_1' | translate }} {{ 'RECOMMENDATIONS' | translate }} ({{ 'USING_NAV' | translate }})
+				</div>
+				<div class="alert alert-success alert-dismissible" data-ng-show="trafficLightColor === 'green'" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close" data-ng-click="trafficLightColor = ''"><span aria-hidden="true">&times;</span></button>
+					<strong>{{ 'SUCCESS' | translate }}</strong> {{ 'PROFILE_ENOUGH_SONGS' | translate }} {{ 'RECOMMENDATIONS' | translate }} ({{ 'USING_NAV' | translate }})
+				</div>
+			</div>
+			<div data-ng-show="trafficLightColor === 'red'" class="alert alert-warning alert-dismissible" role="alert">
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close" data-ng-click="trafficLightColor = ''"><span aria-hidden="true">&times;</span></button>
+				<strong>{{ 'WARNING' | translate }}</strong> {{ 'PROFILE_NOT_ENOUGH_SONGS_1' | translate }} {{numOfNeededTracks}} {{ 'PROFILE_NOT_ENOUGH_SONGS_2' | translate }}
+			</div>
+			<div class="progress">
+				<div data-ng-class="progressColorClass" role="progressbar" aria-valuenow="{{profileCompleteProgress}}" aria-valuemin="0" aria-valuemax="100" style="width:{{profileCompleteProgress}}%">
+					<span class="sr-only">{{profileCompleteProgress}}% Complete</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row track-control-box">
+		<div class="col-sm-5">
+			<form data-ng-submit="search()" autocomplete="off">
+				<div class="input-group">
+					<input type="text" id="search" name="search" class="form-control" data-ng-model="searchQuery" placeholder="{{ 'SEARCH' | translate }}">
+					<span class="input-group-btn">
+						<button type="submit" class="btn btn-primary">
+							<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+						</button>
+					</span>
+				</div>
+			</form>
+		</div>
+		<div class="col-sm-2">
+			<div class="big-or">
+				{{ 'OR' | translate }}
+			</div>
+		</div>
+		<div class="col-sm-5">
+			<a class="btn btn-primary" data-ng-click="refresh()" role="button">{{ 'AUTO_LOAD' | translate }}</a>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="loading-animation" data-ng-hide="loadingComplete">
+			<img class="loader" alt="{{ 'LOADING' | translate }}" src="/modules/core/img/loaders/loader.gif">
+		</div>
+		<div data-ng-show="loadingComplete && !tracks.length" class="loading-animation">
+			{{ 'NO_RECS_AVAILABLE' | translate }}
+		</div>
+		<div data-ng-repeat="track in tracks" data-ng-show="loadingComplete">
+			<div class="col-sm-6 col-md-4" data-ng-show="!hidden[$index]">
+				<div class="thumbnail">
+					<div class="thumbnail-img">
+						<img src="{{ track.album.images[1].url }}" alt="Cover Image" height="200" width="200">
+					</div>
+					<div class="caption caption-track">
+						<h4>{{track.artists[0].name}}
+							<br />{{ track.name }}</h4>
+						<!-- NOTE: check if size is usefull -->
+						<audio-preview place="place" index="$index" size="tracks.length" track="track"></audio-preview>
+
+						<div class="ratingcontainer ratingcontainer-centered">
+							<div data-ng-show="{{starRating}}" star-rating rating-value="rec.rating" max="starMaxRating" on-rating-selected="addStarRating(rating, $index)"></div>
+							<div data-ng-show="{{!starRating}}">
+								<span class="glyphicon glyphicon-thumbs-up thumbup" data-ng-class="greenselected" aria-hidden="true" data-ng-click="like($index)"></span>&nbsp;
+								<span class="glyphicon glyphicon-thumbs-down thumbdown" data-ng-class="redselected" aria-hidden="true" data-ng-click="dislike($index)"></span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

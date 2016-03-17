@@ -1,0 +1,36 @@
+<div data-ng-controller="SettingsController"></div>
+<section data-ng-controller="UserController" data-ng-init="listTracks()">
+	<h2>{{ 'MY_TRACK_PROFILE' | translate }}</h2>
+	<div class="loading-animation" data-ng-hide="user.profile.length">
+		<a class="btn btn-default" href="/tracks" role="button">{{ 'NO_TRACK_PROFILE' | translate }} {{ 'SELECT_SONGS_U_LIKE' | translate }}</a>
+	</div>
+	<div data-ng-show="user.profile.length">
+		<div class="row">
+			<div class="loading-animation" data-ng-hide="loadingComplete">
+				<img class="loader" alt="{{ 'LOADING' | translate }}" src="/modules/core/img/loaders/loader.gif">
+			</div>
+			<div data-ng-repeat="track in tracks" data-ng-show="loadingComplete">
+				<div class="col-sm-6 col-md-4" data-ng-show="!hidden[$index]">
+					<div class="thumbnail">
+						<div class="thumbnail-img">
+							<img src="{{ track.album.images[1].url }}" alt="Cover Image" height="200" width="200">
+						</div>
+						<div class="caption caption-track">
+							<h4>{{track.artists[0].name}}
+								<br />{{ track.name }}</h4>
+							<audio-preview place="place" index="0" size="1" track="track"></audio-preview>
+
+							<div class="ratingcontainer ratingcontainer-centered">
+								<div data-ng-show="{{starRating}}" star-rating rating-value="track.rating" max="starMaxRating" on-rating-selected="addStarRating(rating, $index)"></div>
+								<div data-ng-show="{{!starRating}}">
+									<span class="glyphicon glyphicon-thumbs-up thumbup" data-ng-class="greenselected[$index]" aria-hidden="true" data-ng-click="like($index)"></span>&nbsp;
+									<span class="glyphicon glyphicon-thumbs-down thumbdown" data-ng-class="redselected[$index]" aria-hidden="true" data-ng-click="dislike($index)"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

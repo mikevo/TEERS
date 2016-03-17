@@ -1,0 +1,48 @@
+<div data-ng-controller="SettingsController"></div>
+<section data-ng-controller="RecommendationsController" data-ng-init="updateContext()">
+	<div>
+		<h2>{{ 'SELECT_A_CONTEXT' | translate }}</h2>
+		<div class="dropdown" dropdown>
+			<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" dropdown-toggle aria-haspopup="true" aria-expanded="true">
+				{{recContext}}
+				<span class="caret"></span>
+			</button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+				<li data-ng-repeat="rc in recContexts"><a data-ng-click="updateContext(rc)">{{rc}}</a></li>
+			</ul>
+		</div>
+
+		<div>
+			<h2>{{ 'RECOMMENDED_FOR_YOU' | translate }}</h2>
+			<div class="loading-animation" data-ng-hide="loadingComplete">
+				<img class="loader" alt="{{ 'LOADING' | translate }}" src="/modules/core/img/loaders/loader.gif">
+			</div>
+			<div class="row" data-ng-show="loadingComplete">
+				<div data-ng-hide="recs.length" class="loading-animation">
+					{{ 'NO_RECS_AVAILABLE' | translate }}
+				</div>
+				<div data-ng-repeat="rec in recs" class="col-sm-6 col-md-4">
+					<div class="thumbnail">
+						<div class="thumbnail-img">
+							<a href="tracks/{{rec.id}}" data-ng-click="logDetailView(rec.uri, $index)"><img src="{{ rec.albumImg }}" alt="Cover Image" height="200" width="200"></a>
+						</div>
+						<div class="caption caption-rec">
+							<h4>{{rec.artists[0].name}}
+								<br />{{ rec.name }}</h4>
+							<audio-preview place="place" index="$index" size="recs.length" track="rec"></audio-preview>
+							<h4>{{ 'RATE_SONG' | translate }}</h4>
+							<div class="ratingcontainer ratingcontainer-centered">
+								<div data-ng-show="{{starRating}}" star-rating rating-value="rec.rating" max="starMaxRating" on-rating-selected="addStarRating(rating, $index)"></div>
+								<div data-ng-show="{{!starRating}}">
+									<span class="glyphicon glyphicon-thumbs-up thumbup" data-ng-class="greenselected[$index]" aria-hidden="true" data-ng-click="like($index)"></span>&nbsp;
+									<span class="glyphicon glyphicon-thumbs-down thumbdown" data-ng-class="redselected[$index]" aria-hidden="true" data-ng-click="dislike($index)"></span>
+								</div>
+								<a class="btn btn-default" href="tracks/{{rec.id}}" role="button" data-ng-click="logDetailView(rec.uri, $index); redirectTo('tracks/{{rec.id}}')">{{ 'VIEW_DETAILS' | translate }}</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

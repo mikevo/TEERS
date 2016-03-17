@@ -1,0 +1,40 @@
+<section class="row" data-ng-controller="AuthenticationController">
+	<form name="userForm" data-ng-submit="signup()" class="signin form-horizontal" novalidate autocomplete="off">
+		<h3 class="col-xs-12 col-md-12 text-center">{{ 'SIGN_UP' | translate }}</h3>
+		<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+			<fieldset>
+				<div class="form-group">
+					<label for="firstName">{{ 'FIRST_NAME' | translate }}</label>
+					<input type="text" required id="firstName" name="firstName" class="form-control" data-ng-model="credentials.firstName" placeholder="{{ 'FIRST_NAME' | translate }}">
+				</div>
+				<div class="form-group">
+					<label for="lastName">{{ 'LAST_NAME' | translate }}</label>
+					<input type="text" required id="lastName" name="lastName" class="form-control" data-ng-model="credentials.lastName" placeholder="{{ 'LAST_NAME' | translate }}">
+				</div>
+				<div class="form-group">
+					<label for="email">{{ 'EMAIL' | translate }}</label>
+					<input type="email" required id="email" name="email" class="form-control" data-ng-model="credentials.email" placeholder="{{ 'EMAIL' | translate }}">
+				</div>
+				<div class="form-group">
+					<label for="username">{{ 'USERNAME' | translate }}</label>
+					<input type="text" required id="username" name="username" class="form-control" data-ng-model="credentials.username" placeholder="{{ 'USERNAME' | translate }}">
+				</div>
+				<div class="form-group">
+					<label for="password">{{ 'PASSWORD' | translate }}</label>
+					<input type="password" required id="password" name="password" class="form-control" data-ng-model="credentials.password" placeholder="{{ 'PASSWORD' | translate }}">
+				</div>
+			</fieldset>
+		</div>
+		<h3 class="col-xs-12 col-md-12 text-center">{{ 'ADDITIONAL_INFOS' | translate }} ({{ 'OPTIONAL' | translate }})</h3>
+		<div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+			<div optional-questionnaire data="credentials.questionnaire"></div>
+			<div class="text-center form-group">
+				<button type="submit" class="btn btn-large btn-primary">{{ 'SIGN_UP' | translate }}</button>&nbsp; {{ 'OR' | translate}}&nbsp;
+				<a href="/signin" class="show-signup">{{ 'SIGN_IN' | translate }}</a>
+			</div>
+			<div data-ng-show="error" class="text-center text-danger">
+				<strong data-ng-bind="error"></strong>
+			</div>
+		</div>
+	</form>
+</section>

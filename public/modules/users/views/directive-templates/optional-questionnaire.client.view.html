@@ -1,0 +1,39 @@
+<fieldset>
+  <div class="form-group">
+    <label for="age">{{ 'AGE_RANGE' | translate }}</label>
+    <select class="form-control" id="age" data-ng-model="data.age">
+      <option>&lt; 10</option>
+      <option>11-20</option>
+      <option>21-30</option>
+      <option>31-40</option>
+      <option>41-50</option>
+      <option>51-60</option>
+      <option>61-70</option>
+      <option>71-80</option>
+      <option>81-90</option>
+      <option>90 &gt;</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="gender">{{ 'GENDER' | translate }}</label>
+    <select class="form-control" id="gender" data-ng-model="data.gender">
+      <option value="male">{{ 'MALE' | translate }}</option>
+      <option value="female">{{ 'FEMALE' | translate }}</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="listeningHours">{{ 'LISTENING_HOURS' | translate }}</label>
+    <select class="form-control" id="listeningHours" data-ng-model="data.listeningHours">
+      <option>&lt; 1</option>
+      <option>1-2</option>
+      <option>2-3</option>
+      <option>3-4</option>
+      <option>4-5</option>
+      <option>5-6</option>
+      <option>6-7</option>
+      <option>7-8</option>
+      <option>8-9</option>
+      <option>9 &gt;</option>
+    </select>
+  </div>
+</fieldset>
