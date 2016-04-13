@@ -13,4 +13,7 @@ recommended list which is tracked by the system. The 30-second previews,
 provided by Spotify, are used to give the user an impression of unknown
 tracks.
 
+Before using TEERS for any purepose please check the Terms of Service
+of all used services and if you are allowed to use them.
+
 For install instructions see in the [Doc](doc.md).
