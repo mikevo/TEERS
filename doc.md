@@ -46,7 +46,8 @@ This documentation is written for CentOS 7.
   mv TEERS-master/ teers
   ```
   
-  Create config.json in '/var/www/teers' where you have to adjust the URLs and credentials in the 'recSys' property according to your recommender system
+  Create config.json in '/var/www/teers' where you have to adjust the URLs and credentials in the 'recSys' property according to your recommender system. Before using external services (urls in config.json) check the Terms of Service
+of all used services and if you are allowed to use them.
   ```
   {
     "spotify": {
